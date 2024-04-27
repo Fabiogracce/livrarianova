@@ -1,66 +1,104 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading.Tasks; 
+namespace Livraria
 
-namespace Livraria2
 {
+
     class Menu
+
     {
 
-        controlPessoa controlePessoa;
-        ControlLivro controleLivro;
+        ControlPessoa controlePessoa;
+
         public int opcao;
+
         public Menu()
+
         {
 
-            controlePessoa = new controlPessoa();
-            controleLivro = new ControlLivro();
+            controlePessoa = new ControlPessoa();
+
             opcao = 0;
+
         }//fim do menu
 
         public void EscolherControl()
+
         {
+
             Console.WriteLine("\n\nMenu - Geral" +
-                              "\n0. Sair"        +           
-                              "\n1. Pessoa"      +
-                              "\n2. Livro"       +
-                              "\n3. Reserva"     +
-                              "\nEscolha uma das opçoes acima:");
+
+                             "\n0. Sair" +
+
+                             "\n1. Pessoa" +
+
+                             "\n2. Livro" +
+
+                             "\n3. Reserva" +
+
+                             "\n4. Compra" +
+
+                             "\nEscolha uma das opções acima: ");
+
             opcao = Convert.ToInt32(Console.ReadLine());
 
-
-        }// fim do escolher
+        }//fim do escolher
 
         public void OperacaoMenu()
+
         {
+
             do
+
             {
-                EscolherControl();//chamar texto menu
+
+                EscolherControl();//Chamar o texto do menu
+
                 switch (opcao)
+
                 {
+
                     case 0:
-                        Console.WriteLine("Obrigado!!");
+
+                        Console.WriteLine("Obrigado!");
+
                         break;
+
                     case 1:
+
                         controlePessoa.Operacao();
+
                         break;
+
                     case 2:
-                        controleLivro.Operacao();
+
                         break;
 
                     case 3:
-                        break; 
-                    
-                    case 4:
+
                         break;
+
+                    case 4:
+
+                        break;
+
                     default:
-                        Console.WriteLine("Escolha uma das opção válida!!");
+
+                        Console.WriteLine("Escolha uma opção válida!");
+
                         break;
 
                 }//fim do switch
-            } while ( opcao !=0 );
-        }//fim da operaco menu
+
+            } while (opcao != 0);
+
+        }//fim do operacaoMenu
+
     }//fim da classe
-}// fim do projeto
+
+}//fim do projeto
+

@@ -1,25 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
-namespace Livraria2
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+ 
+namespace Livraria
+
 {
-    
-        class Reserva
+
+    class ModelReserva
 
     {
 
         private int codigo;
+
         private string livro;
+
         private string pessoa;
+
         private int quantidade;
-        private string ISBN;
+
+        private double preco;
+
+        private string situacao;
 
         //Método Construtor
 
-        public Reserva()
+        public ModelReserva()
 
         {
 
@@ -31,7 +43,9 @@ namespace Livraria2
 
             ConsultarQuantidade = 0;
 
-            ConsultarISBN = "";
+            ConsultarPreco = 0;
+
+            ConsultarSituacao = "";
 
         }//Fim do Construtor
 
@@ -77,19 +91,29 @@ namespace Livraria2
 
         }//Fim do Modificar
 
-        public string ConsultarISBN
+        public double ConsultarPreco
 
         {
 
-            get { return ISBN; }
+            get { return preco; }
 
-            set { this.ISBN = value; }
+            set { this.preco = value; }
+
+        }//Fim do Modificar
+
+        public string ConsultarSituacao
+
+        {
+
+            get { return situacao; }
+
+            set { this.situacao = value; }
 
         }//Fim do Modificar
 
         //Métodos - CRUD
 
-        public void ConsultarReserva(int codigo, string livro, string pessoa, int quantidade)
+        public void ConsultarReserva(int codigo, string livro, string pessoa, int quantidade, double preco)
 
         {
 
@@ -101,46 +125,33 @@ namespace Livraria2
 
             ConsultarQuantidade = 0;
 
-        }//Fim do Método
-
-        public string ConsultarIndividual(string ISBN)
-
-        {
-
-            string consulta = "";
-
-            if (ConsultarISBN == ISBN)
-
-            {
-
-                consulta = "\nCodigo: " + ConsultarCodigo +
-                                  "\nLivro: " + ConsultarLivro +
-                                  "\nPessoa: " + ConsultarPessoa +
-                                  "\nQuantidade: " + ConsultarQuantidade;
-
-            }
-
-            else
-
-            {
-
-                consulta = "Número de ISBN não é valido!";
-
-            }
-
-            return consulta;
+            ConsultarPreco = 0;
 
         }//Fim do Método
 
-        public void Excluir(string ISBN)
+        public void AtualizarSituacao(int codigo, string situacao)
 
         {
 
-            if (ConsultarISBN == ISBN)
+            if (ConsultarCodigo == codigo)
 
             {
 
-                ConsultarISBN = "Inativo";
+                ConsultarSituacao = situacao;
+
+            }//Fim do If
+
+        }//Fim do Método
+
+        public void Excluir(int codigo)
+
+        {
+
+            if (ConsultarCodigo == codigo)
+
+            {
+
+                ConsultarSituacao = "Inativo";
 
             }//Fim do If
 
@@ -149,7 +160,3 @@ namespace Livraria2
     }//Fim do Método
 
 }//Fim do Projeto
-
-    
-
-

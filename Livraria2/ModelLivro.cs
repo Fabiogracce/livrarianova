@@ -1,39 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
-namespace Livraria2
+using System.Collections.Generic;
+
+using System.Globalization;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+ 
+namespace Livraria
+
 {
-    class ModelLivro
+
+    class Livro
+
     {
 
         private int Codigo;
-        private string Titulo;
-        private string Autor;
-        private string Editora;
-        private string Genero;
-        private string Isbn;
-        private int Quantidade;
-        private int Preco;
-        private string situacao;//Ativo ou Inativo
 
-        public ModelLivro()
+        private string Titulo;
+
+        private string Autor;
+
+        private string Editora;
+
+        private string Genero;
+
+        private string Isbn;
+
+        private int Quantidade;
+
+        private int Preco;
+
+        private string Situacao;//Ativo ou inativo
+
+        public Livro()
 
         {
 
             ConsultarCodigo = 0;
+
             ConsultarTitulo = "";
+
             ConsultarAutor = "";
+
             ConsultarEditora = "";
+
             ConsultarGenero = "";
+
             ConsultarIsbn = "";
+
             ConsultarQuantidade = 0;
+
             ConsultarPreco = 0;
-            Modificarsituacao = "";//Ativo ou Inativo
-    }//Fim do construtor
+
+            ModificarSituacao = "";
+
+        }//Fim do construtor
 
         //Métodos modificados = Gets e Sets
 
@@ -103,7 +129,7 @@ namespace Livraria2
 
             get { return this.Quantidade; }
 
-            set { this.Quantidade = 0; }
+            set { this.Quantidade = value; }
 
         }//Fim do modificar
 
@@ -117,88 +143,142 @@ namespace Livraria2
 
         }//Fim do modificar
 
-        public string Modificarsituacao
-        {
-            get { return this.situacao; }
-            set { this.situacao = value; }
+        public string ModificarSituacao
 
-        }//fim do modificar
+        {
+
+            get { return this.Situacao; }
+
+            set { this.Situacao = value; }
+
+        }//Fim do modificar
 
         public void CadastrarLivro(int Codigo, string Titulo, string Autor, string Editora, string Genero, string Isbn, int Quantidade, int Preco)
+
         {
 
             ConsultarCodigo = Codigo;
+
             ConsultarTitulo = Titulo;
+
             ConsultarAutor = Autor;
+
             ConsultarEditora = Editora;
+
             ConsultarGenero = Genero;
+
             ConsultarIsbn = Isbn;
+
             ConsultarQuantidade = Quantidade;
+
             ConsultarPreco = Preco;
-            Modificarsituacao = "Ativo";
 
-        }//fim do metodo
+            ModificarSituacao = "Ativo";
 
-        public string ConsultarLivro(string titulo)
+        }//Fim do Métodos
+
+        public string ConsultarLivro(string Titulo)
+
         {
+
             string consulta = "";
-            if (ConsultarTitulo == titulo)
+
+            if (ConsultarTitulo == Titulo)
+
             {
+
                 consulta = "\nCodigo: " + ConsultarCodigo +
+
                                   "\nTitulo: " + ConsultarTitulo +
+
                                   "\nAutor: " + ConsultarAutor +
+
                                   "\nEditora: " + ConsultarEditora +
-                                  "\nGenero: " + ConsultarGenero +
+
+                                  "\nGenêro: " + ConsultarGenero +
+
                                   "\nIsbn: " + ConsultarIsbn +
+
                                   "\nQuantidade: " + ConsultarQuantidade +
-                                  "\nPreço:  " + ConsultarPreco +
-                                  "\nSituação" + Modificarsituacao;
-            }
-            else
-            {
-                consulta = "Título não é válido!!";
+
+                                  "\nPreço: " + ConsultarPreco +
+
+                                  "\nSituação: " + ModificarSituacao;
 
             }
+
+            else
+
+            {
+
+                consulta = "Título inválido!";
+
+            }
+
             return consulta;
 
         }
 
-        public void AtualizarQuantidade(string Titulo, int Quantidade)
+        public double ConsultarPrecoIndividual(int codigo)
+
         {
+
+            double consulta = 0;
+
+            if (ConsultarCodigo == codigo)
+
+            {
+
+                consulta = ConsultarPreco;
+
+            }
+
+            return consulta;
+
+        }//Fim do Método
+
+        public void AtualizarQuantidade(string Titulo, int Quantidade)
+
+        {
+
             if (ConsultarTitulo == Titulo)
+
             {
 
                 ConsultarQuantidade = Quantidade;
+
             }
 
+        }//Fim do método
 
-        }//fim do método
+        public void AtualizarPreco(string Titulo, int Preco)
 
-
-        public void AtualizarPreco(string Titulo, int preco)
         {
+
             if (ConsultarTitulo == Titulo)
+
             {
 
-                ConsultarPreco = preco;
+                ConsultarPreco = Preco;
+
             }
 
-
-        }//fim do método
-
-
+        }//Fim do método
 
         public void Excluir(string Titulo)
-        {
-            if (ConsultarTitulo == Titulo)
-            {
-                Modificarsituacao = "Inativo";
 
+        {
+
+            if (ConsultarTitulo == Titulo)
+
+            {
+
+                ModificarSituacao = "Inativo";
 
             }
 
+        }
 
-        }//fim do método
     }
 
 }

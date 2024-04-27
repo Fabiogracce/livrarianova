@@ -1,176 +1,274 @@
-﻿using System;
+﻿
+using System;
+
 using System.Collections.Generic;
+
 using System.Linq;
-using System.Management.Instrumentation;
+
 using System.Text;
+
 using System.Threading.Tasks;
 
-namespace Livraria2
+namespace Livraria
+
 {
-     class controlPessoa
+
+    class ControlPessoa
+
     {
 
-        Pessoa model;//Conectar com a classe pessoa
+        DAOpessoa person;//Conexão com pessoa
+
+        Pessoa model;//Conectar com a classe pessoa 
+
         private int opcao;
-        public controlPessoa()
-        { 
-        
+
+        public ControlPessoa()
+
+        {
+
+            person = new DAOpessoa();
+
             model = new Pessoa();//Acesso a todos os métodos da classe pessoa
+
             ModificarOpcao = 0;
-        
-        }// fim do construtor
+
+        }//fim do construtor
 
         public int ModificarOpcao
-        { 
-            get { return opcao; }
-            set { opcao = value; }
-        
-        }// fim do modificarOpcao
 
-        
-        public void Menu()
         {
-            Console.WriteLine("Menu - Pessoa"                     +
-                              "\nEscolha uma das opçoes abaixo: " +
-                              "\n1. Cadastrar Pessoa"             +
-                              "\n2. Consultar Pessoa"             +
-                              "\n3. Atualizar Nome"               +
-                              "\n4. Atualizar Telefone"           +
-                              "\n5. Atulizar Endeçlo"             +
-                              "\n6. Atulizar Data de nascimento"  +
-                              "\n7. Atualizar Senha"              +
-                              "\n8. Atualizar Situção"            +
-                              "\n9. Excluir");
+
+            get { return opcao; }
+
+            set { opcao = value; }
+
+        }//fim do modificarOpcao
+
+        public void Menu()
+
+        {
+
+            Console.WriteLine("Menu - Pessoa" +
+
+                              "\nEscolha uma das opções abaixo: " +
+
+                              "\n1. Cadastrar Pessoa" +
+
+                              "\n2. Consultar Tudo" +
+
+                              "\n3. Consultar Individual" +
+
+                              "\n4. Atualizar Nome" +
+
+                              "\n5. Atualizar Telefone" +
+
+                              "\n6. Atualizar Endereço" +
+
+                              "\n7. Atualizar Data de Nascimento" +
+
+                              "\n8. Atualizar Senha" +
+
+                              "\n9. Atualizar Situação" +
+
+                              "\n10. Excluir");
+
             ModificarOpcao = Convert.ToInt32(Console.ReadLine());
-
-
 
         }//fim do menu
 
         public void Operacao()
+
         {
-            Menu();//Mostrar Menu
-            switch (ModificarOpcao) {
+
+            Menu();//Mostrar o menu
+
+            switch (ModificarOpcao)
+
+            {
 
                 case 1:
+
                     Console.WriteLine("Informe o CPF: ");
+
                     long CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe seu nome: ");
+                    Console.WriteLine("Informe o seu nome: ");
+
                     string nome = Console.ReadLine();
 
-                    Console.WriteLine("Informe seu telefone: ");
+                    Console.WriteLine("Informe o seu telefone: ");
+
                     string telefone = Console.ReadLine();
 
-                    Console.WriteLine("Informe seu endereço: ");
+                    Console.WriteLine("Informe o seu endereço: ");
+
                     string endereco = Console.ReadLine();
 
                     Console.WriteLine("Informe sua data de nascimento: ");
+
                     DateTime data = Convert.ToDateTime(Console.ReadLine());
 
                     Console.WriteLine("Informe o seu login: ");
+
                     string login = Console.ReadLine();
 
-                    Console.WriteLine("Informe sua senha: ");
+                    Console.WriteLine("Informe a sua senha: ");
+
                     string senha = Console.ReadLine();
 
                     Console.WriteLine("Informe o seu cargo: ");
+
                     string cargo = Console.ReadLine();
 
-                    // chamar o método cadastrar
+                    //Chamar o método cadastrar
 
-                    model.Cadastrar(CPF, nome, telefone, endereco, data, login, senha, cargo);
+                    person.Inserir(CPF, nome, telefone, endereco, data, login, senha, "Ativo", cargo);
+
                     break;
 
-                    case 2:
-                    Console.WriteLine("Informe o CPf que deseja consultar: ");
-                    CPF = Convert.ToInt64(Console.ReadLine());
+                case 2:
 
+                    //Mostrar os dados
 
-                    //mostrar os dados
-                    Console.WriteLine(model.ConsultarIndividual(CPF));
+                    Console.WriteLine(person.ConsultarTudo());
+
                     break;
 
-                    case 3:
-                    Console.WriteLine("Informe o CPF");
+                case 3:
+
+                    Console.WriteLine("Informe o CPF que deseja consultar: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe o novo nome");
+                    Console.WriteLine(person.ConsultarIndividual(CPF));
+
+                    break;
+
+                case 4:
+
+                    Console.WriteLine("Informe o CPF: ");
+
+                    CPF = Convert.ToInt64(Console.ReadLine());
+
+                    Console.WriteLine("Informe o novo nome: ");
+
                     nome = Console.ReadLine();
 
-                    //atualizar
+                    //Atualizar
 
-                    model.AtualizarNome(CPF, nome);
+                    Console.WriteLine(person.Atualizar(CPF, "nome", nome));
+
                     break;
 
-                    case 4:
-                    Console.WriteLine("Informe o CPF");
+                case 5:
+
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe o novo telefone");
+                    Console.WriteLine("Informe o novo telefone: ");
+
                     telefone = Console.ReadLine();
 
-                    model.AtualizarTelefone( CPF, telefone );
+                    //Atualizar
+
+                    Console.WriteLine(person.Atualizar(CPF, "telefone", telefone));
+
                     break;
 
-                    case 5:
+                case 6:
 
-                    Console.WriteLine("Informe o CPF");
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe o novo endereço");
+                    Console.WriteLine("Informe o novo endereço: ");
+
                     endereco = Console.ReadLine();
 
-                    model.AtualizarEndereco(CPF, endereco);
+                    //Atualizar
+
+                    Console.WriteLine(person.Atualizar(CPF, "endereco", endereco));
+
                     break;
 
-                    case 6:
+                case 7:
 
-                    Console.WriteLine("Informe o CPF");
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe a nova data de nascimento");
+                    Console.WriteLine("Informe a data de nascimento: ");
+
                     data = Convert.ToDateTime(Console.ReadLine());
-                    
-                    model.AtualizarDtNascimento(CPF, data);
+
+                    //Atualizar
+
+                    Console.WriteLine(person.Atualizar(CPF, "dtNascimento", data));
 
                     break;
-                    
-                    case 7:
-                    Console.WriteLine("Informe o CPF");
+
+                case 8:
+
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe a nova senha");
-                    senha = (Console.ReadLine());
+                    Console.WriteLine("Informe a nova senha: ");
 
-                    model.Atualizarsenha(CPF, senha);
+                    senha = Console.ReadLine();
+
+                    //Atualizar
+
+                    Console.WriteLine(person.Atualizar(CPF, "senha", senha));
+
                     break;
-                    
-                    case 8:
-                    Console.WriteLine("Informe o CPF");
+
+                case 9:
+
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("Informe o novo cargo");
-                    cargo = (Console.ReadLine());
+                    Console.WriteLine("Informe o cargo: ");
 
-                    model.AtualizarPosicao(CPF, cargo);
-                    break; 
-                    
-                    case 9:
+                    cargo = Console.ReadLine();
 
-                    Console.WriteLine("Informe o CPF");
+                    //Atualizar
+
+                    Console.WriteLine(person.Atualizar(CPF, "cargo", cargo));
+
+                    break;
+
+                case 10:
+
+                    Console.WriteLine("Informe o CPF: ");
+
                     CPF = Convert.ToInt64(Console.ReadLine());
 
                     //Excluir
 
-                    model.Excluir(CPF);
-                    
-                    break; 
-            
-            }// ffim do switch
-            
-        
-        }// fim da operacao
+                    person.Excluir(CPF);
+
+                    break;
+
+                default:
+
+                    Console.WriteLine("Escolha uma opção válida!");
+
+                    break;
+
+            }//fim do switch
+
+        }//fim da operacao
 
     }//fim da classe
+
 }//fim do projeto
+
+
+
+
+
+

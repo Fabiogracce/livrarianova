@@ -1,17 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 
-namespace Livraria2
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+ 
+namespace Livraria
+
 {
-  
+
     class Compra
 
     {
 
-        ModelLivro modelLivro;
+        Livro modelLivro;
+
+        Pessoa modelPessoa;
 
         private int CPF;
 
@@ -35,7 +43,7 @@ namespace Livraria2
 
             ConsultarCPF = 0;
 
-            Consultarnome = "";
+            ConsultarNome = "";
 
             ConsultarLivro = 0;
 
@@ -61,7 +69,7 @@ namespace Livraria2
 
         }//Fim do Modificar
 
-        public string Consultarnome
+        public string ConsultarNome
 
         {
 
@@ -129,7 +137,7 @@ namespace Livraria2
 
             ConsultarCPF = 0;
 
-            Consultarnome = "";
+            ConsultarNome = "";
 
             ConsultarQuantidade = 0;
 
@@ -145,13 +153,13 @@ namespace Livraria2
 
             string consulta = "";
 
-            if (ConsultarCPF== CPF)
+            if (ConsultarCPF == CPF)
 
             {
 
-                consulta = "\nCodigo: " + ConsultarCPF +
+                consulta = "\nCPF: " + ConsultarCPF +
 
-                                  "\nPessoa: " + Consultarnome +
+                                  "\nNome: " + ConsultarNome +
 
                                   "\nLivro: " + ConsultarLivro +
 
@@ -245,6 +253,6 @@ namespace Livraria2
 
         }//Fim do Excluir
 
-    }//Fim da Classe
+    }
 
-}//Fim do Projeto
+}
