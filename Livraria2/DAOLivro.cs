@@ -56,7 +56,7 @@ namespace Livraria
 
         {
 
-            conexao = new MySqlConnection("server=localhost;DataBase=livrariaTI20N;Uid=root;Password=;Convert Zero DateTime=True");
+            conexao = new MySqlConnection("server=localhost;DataBase=livraria2;Uid=root;Password=;Convert Zero DateTime=True");
 
             try
 
@@ -94,7 +94,7 @@ namespace Livraria
 
                 dados = "('" + Codigo + "','" + Titulo + "','" + Autor + "','" + Editora + "','" + Genero + "','" + Isbn + "','" + Quantidade + "','" + Preco + "','" + situacao + "')";
 
-                comando = $"Insert into pessoa values" + dados;
+                comando = $"Insert into livro(Codigo, Titulo, Autor, Editora, Genero, Isbn, Quantidade, Preco, situacao) values" + dados;
 
                 //Engatilhar a inserção do banco
 
@@ -122,7 +122,7 @@ namespace Livraria
 
         {
 
-            string query = "select * from pessoa";//Coletar os dados do banco
+            string query = "select * from livro";//Coletar os dados do banco
 
             //instanciar
 
@@ -190,7 +190,7 @@ namespace Livraria
 
             {
 
-                Codigo[i] = Convert.ToInt32(leitura["Codigo+"]) + 0;
+                Codigo[i] = Convert.ToInt32(leitura["Codigo"]) + 0;
 
                 Titulo[i] = leitura["Titulo"] + "";
 
@@ -202,9 +202,9 @@ namespace Livraria
 
                 Isbn[i] = leitura["Isbn"] + "";
 
-                Quantidade[i] = Convert.ToInt32(leitura["Codigo+"]) + 0;
+                Quantidade[i] = Convert.ToInt32(leitura["Quantidade"]) + 0;
 
-                Preco[i] = Convert.ToInt32(leitura["Codigo+"]) + 0;
+                Preco[i] = Convert.ToInt32(leitura["Preco"]) + 0;
 
                 situacao[i] = leitura["situacao"] + "";                
 
@@ -237,9 +237,7 @@ namespace Livraria
                        ", Autor: " + Autor[i] +
 
                        ", Editora: " + Editora[i] +
-
-                       //", Nascimento: " + dtNascimento[i] +
-
+                       
                        ", Genero: " + Genero[i] +
 
                        ", Isbn: " + Isbn[i] +
@@ -276,9 +274,7 @@ namespace Livraria
 
                           ", Autor: " + Autor +
 
-                          ", Editora: " + Editora +
-
-                          //", dtNascimento: " + dtNascimento[i] +
+                          ", Editora: " + Editora +                          
 
                           ", Genero: " + Genero[i] +
 
@@ -310,7 +306,7 @@ namespace Livraria
 
             {
 
-                string query = "update pessoa set " + campo + " = '" + novoDado + "' where Codigo = '" + Codi + "'";
+                string query = "update livro set " + campo + " = '" + novoDado + "' where Codigo = '" + Codi + "'";
 
                 //Exercutar comando
 
@@ -340,7 +336,7 @@ namespace Livraria
 
             {
 
-                string query = "update pessoa set " + campo + " = '" + novoDado + "' where Codigo = '" + Codi + "'";
+                string query = "update livro set " + campo + " = '" + novoDado + "' where Codigo = '" + Codi + "'";
 
                 //Exercutar comando
 
@@ -370,7 +366,7 @@ namespace Livraria
 
             {
 
-                string query = "update pessoa set situacao = 'Inativo' where Codigo = '" + Codi + "'";
+                string query = "update livro set situacao = 'Inativo' where Codigo = '" + Codi + "'";
 
                 //Exercutar comando
 

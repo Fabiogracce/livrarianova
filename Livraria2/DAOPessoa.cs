@@ -59,7 +59,7 @@ namespace Livraria
 
         {
 
-            conexao = new MySqlConnection("server=localhost;DataBase=livrariaTI20N;Uid=root;Password=;Convert Zero DateTime=True");
+            conexao = new MySqlConnection("server=localhost;DataBase=Livraria2;Uid=root;Password=;Convert Zero DateTime=True");
 
             try
 

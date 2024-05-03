@@ -153,7 +153,7 @@ namespace Livraria
 
         }//Fim do modificar
 
-        public void CadastrarLivro(int Codigo, string Titulo, string Autor, string Editora, string Genero, string Isbn, int Quantidade, int Preco)
+        public void CadastrarLivro(int Codigo, string Titulo, string Autor, string Editora, string Genero, string Isbn, int Quantidade, double Preco)
 
         {
 

@@ -78,7 +78,7 @@ namespace Livraria
 
                 case 1:
 
-                    Console.WriteLine("Informe o Codigo do Livro: ");
+                    Console.WriteLine("Informe o Codigo do Livro: ");                   
 
                     int Codigo = Convert.ToInt32(Console.ReadLine());
 
@@ -108,23 +108,19 @@ namespace Livraria
 
                     Console.WriteLine("Infome o Preço do Livro: ");
 
-                    int Preco = Convert.ToInt32(Console.ReadLine());
+                    Double Preco = Convert.ToInt32(Console.ReadLine());
 
                     //Chamar o método cadastrar
 
-                    model.CadastrarLivro(Codigo, Titulo, Autor, Editora, Genero, Isbn, Quantidade, Preco);
+                    Book.Inserir(Codigo, Titulo, Autor, Editora, Genero, Isbn, Quantidade, Preco, "Ativo");
 
                     break;
 
-                case 2:
-
-                    Console.WriteLine("Informe o Titulo que deseja consultar: ");
-
-                    Titulo = Console.ReadLine();
+                case 2:                   
 
                     //Mostrar os dados
 
-                    Console.WriteLine(model.ConsultarLivro(Titulo));
+                    Console.WriteLine(Book.ConsultarTudo());
 
                     break;
 

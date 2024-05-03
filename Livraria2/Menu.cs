@@ -13,6 +13,8 @@ namespace Livraria
     {
 
         ControlPessoa controlePessoa;
+        ControlLivro controleLivro;
+        ControlReserva controleReserva;
 
         public int opcao;
 
@@ -21,6 +23,8 @@ namespace Livraria
         {
 
             controlePessoa = new ControlPessoa();
+            controleLivro  = new ControlLivro();
+            controleReserva= new ControlReserva();
 
             opcao = 0;
 
@@ -75,10 +79,12 @@ namespace Livraria
                         break;
 
                     case 2:
+                        controleLivro.Operacao();
 
                         break;
 
                     case 3:
+                        controleReserva.Operacao();
 
                         break;
 
